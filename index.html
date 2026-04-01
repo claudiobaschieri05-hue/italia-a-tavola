@@ -3,18 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Italia a Tavola | La guida completa a ristoranti, trattorie, pasticcerie e bar d'Italia</title>
-    <meta name="description" content="La più grande guida italiana con oltre 350 locali selezionati: menù reali, prezzi, piatti iconici, orari e consigli. Ristoranti stellati, trattorie storiche, pasticcerie, bar, pizzerie e gelaterie in tutte le regioni.">
-    <meta name="keywords" content="ristoranti italiani con menù, trattorie con prezzi, pasticcerie italiane, bar storici, pizzerie napoletane, gelaterie artigianali, guida gastronomica italia">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Italia a Tavola - Oltre 350 locali con menù reali">
-    <meta property="og:description" content="Menù completi, prezzi aggiornati, piatti iconici e consigli per i migliori locali d'Italia.">
-    <meta property="og:type" content="website">
+    <title>Italia a Tavola | La guida completa con menu interattivi e mappa precisa</title>
+    <meta name="description" content="Oltre 150 locali italiani con menu interattivi completi: antipasti, primi, secondi, dolci, vini e bibite. Mappa precisa con coordinate reali.">
+    <meta name="keywords" content="ristoranti italiani con menu, menu interattivo, trattorie con prezzi, carta vini, ristoranti con coordinate">
     
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
@@ -36,7 +30,7 @@
             background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1600');
             background-size: cover;
             background-position: center;
-            min-height: 70vh;
+            min-height: 65vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -44,29 +38,10 @@
             color: white;
         }
 
-        .hero-content {
-            max-width: 1000px;
-            padding: 2rem;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: #c4452c;
-            padding: 0.6rem 1.8rem;
-            border-radius: 50px;
-            font-weight: bold;
-        }
+        .hero-content { max-width: 1000px; padding: 2rem; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.2rem; margin-bottom: 1.5rem; }
+        .hero-badge { background: #c4452c; padding: 0.6rem 1.8rem; border-radius: 50px; font-weight: bold; }
 
         .navbar {
             background: #2c2418;
@@ -81,30 +56,12 @@
             flex-wrap: wrap;
             gap: 1rem;
         }
-
-        .logo {
-            font-size: 1.4rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
+        .logo { font-size: 1.4rem; font-weight: bold; display: flex; align-items: center; gap: 0.5rem; }
         .logo span { color: #c4452c; font-size: 1.6rem; }
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            margin-left: 1.5rem;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
+        .nav-links a { color: white; text-decoration: none; margin-left: 1.5rem; font-weight: 500; transition: color 0.3s; }
         .nav-links a:hover { color: #c4452c; }
 
-        .container {
-            max-width: 1500px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
+        .container { max-width: 1500px; margin: 0 auto; padding: 2rem; }
 
         .intro {
             text-align: center;
@@ -114,28 +71,9 @@
             margin-bottom: 2rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
-
-        .intro h2 {
-            font-size: 2rem;
-            color: #c4452c;
-            margin-bottom: 1rem;
-        }
-
-        .stats-bar {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .stat {
-            background: #fef9f0;
-            padding: 0.5rem 1.2rem;
-            border-radius: 50px;
-            font-weight: bold;
-            color: #c4452c;
-        }
+        .intro h2 { font-size: 2rem; color: #c4452c; margin-bottom: 1rem; }
+        .stats-bar { display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap; }
+        .stat { background: #fef9f0; padding: 0.5rem 1.2rem; border-radius: 50px; font-weight: bold; color: #c4452c; }
 
         .filters-section {
             background: white;
@@ -144,21 +82,8 @@
             margin-bottom: 2rem;
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
-
-        .filters-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #c4452c;
-            margin-bottom: 0.8rem;
-        }
-
-        .filter-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-bottom: 1rem;
-        }
-
+        .filters-title { font-size: 1.1rem; font-weight: bold; color: #c4452c; margin-bottom: 0.8rem; }
+        .filter-group { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1rem; }
         .filter-btn {
             background: #f0ebe4;
             border: none;
@@ -172,16 +97,7 @@
         }
         .filter-btn.active { background: #c4452c; color: white; }
         .filter-btn:hover { background: #d45a3e; color: white; }
-
-        .reset-btn {
-            background: #2c2418;
-            color: white;
-            border: none;
-            padding: 0.5rem 1.5rem;
-            border-radius: 40px;
-            cursor: pointer;
-            font-weight: bold;
-        }
+        .reset-btn { background: #2c2418; color: white; border: none; padding: 0.5rem 1.5rem; border-radius: 40px; cursor: pointer; font-weight: bold; }
 
         .dashboard {
             display: grid;
@@ -189,26 +105,17 @@
             gap: 2rem;
             margin-bottom: 2rem;
         }
-
-        @media (max-width: 1000px) {
-            .dashboard { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 1000px) { .dashboard { grid-template-columns: 1fr; } }
 
         .restaurants-list {
             background: white;
             border-radius: 25px;
             padding: 1.5rem;
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            max-height: 750px;
+            max-height: 700px;
             overflow-y: auto;
         }
-
-        .restaurants-list h2 {
-            color: #c4452c;
-            margin-bottom: 1rem;
-            border-left: 4px solid #c4452c;
-            padding-left: 1rem;
-        }
+        .restaurants-list h2 { color: #c4452c; margin-bottom: 1rem; border-left: 4px solid #c4452c; padding-left: 1rem; }
 
         .restaurant-card {
             background: #fef9f0;
@@ -224,7 +131,6 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.12);
             border-color: #c4452c;
         }
-
         .restaurant-name {
             font-size: 1.2rem;
             font-weight: bold;
@@ -234,7 +140,6 @@
             flex-wrap: wrap;
         }
         .stars { color: #f4b942; font-size: 0.9rem; }
-
         .restaurant-type {
             display: inline-block;
             background: #e8dfd3;
@@ -244,7 +149,6 @@
             font-weight: bold;
             margin: 0.4rem 0;
         }
-
         .restaurant-location { font-size: 0.85rem; color: #7a6856; margin: 0.3rem 0; }
         .restaurant-price {
             display: inline-block;
@@ -255,17 +159,69 @@
             font-size: 0.7rem;
             margin-right: 0.5rem;
         }
-
-        .menu-preview {
-            background: #fff5ea;
-            padding: 0.6rem;
-            border-radius: 12px;
-            margin: 0.6rem 0;
-            font-size: 0.8rem;
-            border-left: 3px solid #c4452c;
+        .view-menu-btn {
+            background: #c4452c;
+            color: white;
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            transition: background 0.2s;
         }
-        .menu-preview i { color: #c4452c; margin-right: 0.3rem; }
-        .chef-tip { font-size: 0.75rem; color: #9b7b5c; font-style: italic; margin-top: 0.4rem; }
+        .view-menu-btn:hover { background: #a03a24; }
+
+        /* Menu modale */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        .modal-content {
+            background: #fef9f0;
+            margin: 2rem auto;
+            max-width: 800px;
+            border-radius: 30px;
+            padding: 2rem;
+            position: relative;
+        }
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #c4452c;
+        }
+        .menu-section {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #e8dfd3;
+            padding-bottom: 1rem;
+        }
+        .menu-section h3 {
+            color: #c4452c;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #e8dfd3;
+        }
+        .menu-item-name { font-weight: bold; }
+        .menu-item-price { color: #c4452c; font-weight: bold; }
+        .menu-item-desc { font-size: 0.8rem; color: #7a6856; margin-top: 0.2rem; }
 
         .map-wrapper {
             background: white;
@@ -307,43 +263,15 @@
             text-align: center;
             margin-top: 2rem;
         }
-        .newsletter-form {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-        .newsletter-form input {
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 50px;
-            width: 280px;
-        }
-        .newsletter-form button {
-            background: #c4452c;
-            color: white;
-            border: none;
-            padding: 0.8rem 1.8rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-        }
+        .newsletter-form { display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
+        .newsletter-form input { padding: 0.8rem 1.5rem; border: none; border-radius: 50px; width: 280px; }
+        .newsletter-form button { background: #c4452c; color: white; border: none; padding: 0.8rem 1.8rem; border-radius: 50px; cursor: pointer; font-weight: bold; }
 
-        .footer {
-            background: #1e1812;
-            color: #b8a99a;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-        }
+        .footer { background: #1e1812; color: #b8a99a; text-align: center; padding: 2rem; margin-top: 3rem; }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #f0ebe4; }
         ::-webkit-scrollbar-thumb { background: #c4452c; border-radius: 10px; }
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .container { padding: 1rem; }
-        }
+        @media (max-width: 768px) { .hero h1 { font-size: 2rem; } .container { padding: 1rem; } }
     </style>
 </head>
 <body>
@@ -351,8 +279,8 @@
 <section class="hero">
     <div class="hero-content">
         <h1>🍝 Italia a Tavola</h1>
-        <p>La più grande guida italiana: oltre 350 locali con menù reali, prezzi aggiornati e piatti iconici</p>
-        <div class="hero-badge">🇮🇹 350+ locali | Ristoranti | Trattorie | Pasticcerie | Bar | Pizzerie | Gelaterie</div>
+        <p>Menu interattivi completi con antipasti, primi, secondi, dolci, vini e bibite. Mappa precisa con coordinate reali.</p>
+        <div class="hero-badge">🇮🇹 150+ locali | Menu interattivi | Mappa precisa</div>
     </div>
 </section>
 
@@ -369,14 +297,13 @@
 
 <div class="container">
     <div class="intro">
-        <h2>🗺️ La mappa completa del gusto italiano</h2>
-        <p>Menù completi con prezzi, orari, piatti iconici e consigli degli chef. Dai ristoranti stellati alle trattorie di quartiere, dalle pasticcerie storiche ai bar più iconici, dalle pizzerie napoletane alle gelaterie artigianali. Un viaggio unico nella cultura gastronomica italiana.</p>
+        <h2>🗺️ La guida completa con menu interattivi</h2>
+        <p>Clicca su "Visualizza Menu" per esplorare antipasti, primi, secondi, dolci, vini e bibite con prezzi reali. Mappa con coordinate precise di ogni locale.</p>
         <div class="stats-bar">
-            <span class="stat"><i class="fas fa-utensils"></i> 350+ locali</span>
+            <span class="stat"><i class="fas fa-utensils"></i> 150+ locali</span>
             <span class="stat"><i class="fas fa-map-marker-alt"></i> 20 regioni</span>
-            <span class="stat"><i class="fas fa-euro-sign"></i> Prezzi reali</span>
-            <span class="stat"><i class="fas fa-book-open"></i> Menù completi</span>
-            <span class="stat"><i class="fas fa-mug-hot"></i> Bar & Pasticcerie</span>
+            <span class="stat"><i class="fas fa-wine-bottle"></i> Carte vini</span>
+            <span class="stat"><i class="fas fa-coffee"></i> Menu completi</span>
         </div>
     </div>
 
@@ -394,7 +321,7 @@
             <div id="restaurantsContainer"></div>
         </div>
         <div class="map-wrapper" id="mappa">
-            <h2 style="margin-bottom: 0.8rem; color:#c4452c;"><i class="fas fa-map"></i> Esplora sulla mappa</h2>
+            <h2 style="margin-bottom: 0.8rem; color:#c4452c;"><i class="fas fa-map"></i> Mappa precisa (clicca per dettagli)</h2>
             <div id="map"></div>
         </div>
     </div>
@@ -405,8 +332,8 @@
     </div>
 
     <div class="newsletter" id="newsletter">
-        <h3><i class="fas fa-envelope"></i> Ricevi la guida completa</h3>
-        <p>Iscriviti per ricevere aggiornamenti su nuovi locali, eventi gastronomici e offerte esclusive.</p>
+        <h3><i class="fas fa-envelope"></i> Ricevi i menu esclusivi</h3>
+        <p>Iscriviti per ricevere aggiornamenti su nuovi locali e menu stagionali.</p>
         <div class="newsletter-form">
             <input type="email" id="newsletterEmail" placeholder="La tua email">
             <button onclick="subscribeNewsletter()">Iscriviti gratuitamente</button>
@@ -415,146 +342,244 @@
     </div>
 </div>
 
+<div id="menuModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <div id="modalContent"></div>
+    </div>
+</div>
+
 <footer class="footer">
-    <p>🇮🇹 Italia a Tavola - La guida completa ai locali d'Italia con menù reali e prezzi aggiornati</p>
-    <p style="font-size: 0.8rem;">Oltre 350 locali selezionati in tutte le regioni | Ristoranti, Trattorie, Osterie, Pasticcerie, Bar, Pizzerie, Gelaterie</p>
+    <p>🇮🇹 Italia a Tavola - La guida completa con menu interattivi e mappa precisa</p>
+    <p style="font-size: 0.8rem;">150+ locali selezionati | Menu completi con antipasti, primi, secondi, dolci, vini e bibite</p>
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-// ======================= DATABASE COMPLETO CON MENÙ REALI - 350+ LOCALI =======================
-// Versione estesa con menù dettagliati, prezzi reali, piatti iconici
-
+// ======================= DATABASE CON MENU COMPLETI E COORDINATE PRECISE =======================
 const restaurantsDB = {
     restaurants: [
-        // ========== RISTORANTI STELLATI E DI ALTA CUCINA ==========
-        { id: 1, name: "Osteria Francescana", city: "Modena", region: "Emilia-Romagna", type: "Stellato", cuisine: "Innovativa", price: "€€€€ (350-500€)", lat: 44.6471, lon: 10.9252, stars: 5, hours: "Mar-Sab 12:30-14:00, 19:30-21:30", menu: "Menu Francescana 450€ (10 portate), Menu Tradizione 320€ (8 portate), Carta dei vini da 150€", signature: "Cinque età del Parmigiano Reggiano, Tortellini con panna di parmigiano", tip: "Prenotazione online con 6 mesi di anticipo" },
-        { id: 2, name: "Da Vittorio", city: "Brusaporto", region: "Lombardia", type: "Stellato", cuisine: "Italiana Moderna", price: "€€€€ (280-400€)", lat: 45.6735, lon: 9.7631, stars: 5, hours: "Mer-Dom 12:30-14:00, 19:30-21:30", menu: "Menu Gran Classico 290€, Menu Storico 250€, Degustazione vegetariana 220€", signature: "Paccheri con pomodorino e basilico, Cotechino con lenticchie", tip: "Chiedi il tour della cantina con 50.000 bottiglie" },
-        { id: 3, name: "Le Calandre", city: "Rubano", region: "Veneto", type: "Stellato", cuisine: "Contemporanea", price: "€€€€ (260-380€)", lat: 45.4282, lon: 11.7968, stars: 5, hours: "Mer-Dom 12:30-14:30, 19:30-22:00", menu: "Menu Calandre 270€, Menu Sensazioni 230€, Menu Classico 190€", signature: "Risotto con zafferano e midollo, Spaghettini al limone", tip: "Massimo Alajmo, il più giovane chef 3 stelle" },
-        { id: 4, name: "La Pergola", city: "Roma", region: "Lazio", type: "Stellato", cuisine: "Internazionale", price: "€€€€ (280-400€)", lat: 41.9028, lon: 12.4964, stars: 5, hours: "Mar-Sab 19:30-22:30", menu: "Menu Mediterraneo 320€, Menu Terra 280€, Carta dei vini da 120€", signature: "Aragosta in crosta di pane carasau, Fegato grasso d'anatra", tip: "Vista spettacolare su Roma, dress code elegante" },
-        { id: 5, name: "Piazza Duomo", city: "Alba", region: "Piemonte", type: "Stellato", cuisine: "Creativa", price: "€€€€ (250-350€)", lat: 44.6998, lon: 8.0349, stars: 5, hours: "Mar-Sab 12:30-14:00, 19:30-21:30", menu: "Menu degustazione 10 portate 280€, Menu Terra 220€", signature: "Tartufo bianco d'Alba, Uovo in camicia al tartufo", tip: "Prenotazione con 3 mesi di anticipo per il tartufo" },
-        { id: 6, name: "Reale", city: "Castel di Sangro", region: "Abruzzo", type: "Stellato", cuisine: "Contemporanea", price: "€€€€ (200-280€)", lat: 41.7838, lon: 14.1037, stars: 5, hours: "Mer-Dom 12:30-14:30, 19:30-22:00", menu: "Menu Reale 240€, Menu Essenza 200€", signature: "Cipolla caramellata, Baccalà", tip: "Niko Romito, tre stelle Michelin" },
-        { id: 7, name: "Enoteca Pinchiorri", city: "Firenze", region: "Toscana", type: "Stellato", cuisine: "Alta Cucina", price: "€€€€ (300-450€)", lat: 43.7715, lon: 11.2568, stars: 5, hours: "Mar-Sab 19:30-22:00", menu: "Menu Degustazione 320€, Menu Classico 260€", signature: "Pici al ragù di cinta senese, Fiorentina di chianina", tip: "Cantina con 150.000 bottiglie, la più grande d'Italia" },
-        { id: 8, name: "Don Alfonso 1890", city: "Sant'Agata", region: "Campania", type: "Stellato", cuisine: "Campana", price: "€€€€ (220-300€)", lat: 40.6101, lon: 14.3717, stars: 5, hours: "Mar-Dom 12:30-14:30, 19:30-22:00", menu: "Menu Mediterraneo 250€, Menu Terra 210€", signature: "Linguine con astice, Delizie al limone", tip: "Orto biologico proprio, visita al giardino" },
-        { id: 9, name: "Uliassi", city: "Senigallia", region: "Marche", type: "Stellato", cuisine: "Marinara", price: "€€€€ (220-300€)", lat: 43.7155, lon: 13.2168, stars: 5, hours: "Mer-Dom 12:30-14:30, 19:30-22:00", menu: "Menu Mare 260€, Menu Terra 220€", signature: "Brodetto di pesce, Alici", tip: "Tre stelle Michelin, vista mare" },
-        { id: 10, name: "St. Hubertus", city: "San Cassiano", region: "Trentino Alto Adige", type: "Stellato", cuisine: "Alpina", price: "€€€€ (250-350€)", lat: 46.5659, lon: 11.9354, stars: 5, hours: "Mer-Dom 19:00-21:30", menu: "Menu Montagna 290€, Menu Bosco 250€", signature: "Cucina alpina contemporanea", tip: "Tre stelle Michelin, nel cuore delle Dolomiti" },
-        
-        // ========== TRATTORIE STORICHE ==========
-        { id: 11, name: "Trattoria da Burde", city: "Firenze", region: "Toscana", type: "Trattoria", cuisine: "Toscana", price: "€€ (35-55€)", lat: 43.7863, lon: 11.2597, stars: 4, hours: "Lun-Sab 12:30-14:30, 19:30-22:30", menu: "Bistecca alla fiorentina 50€/kg, Pappa al pomodoro 12€, Ribollita 10€, Crostini toscani 8€", signature: "Bistecca alla fiorentina di chianina", tip: "Chiedi la tagliata di chianina con olio nuovo" },
-        { id: 12, name: "Trattoria Sostanza", city: "Firenze", region: "Toscana", type: "Trattoria", cuisine: "Toscana", price: "€€ (30-45€)", lat: 43.7777, lon: 11.2517, stars: 4, hours: "Lun-Sab 12:30-14:30, 19:30-22:00", menu: "Petto di pollo al burro 16€, Bistecca 45€, Meringata 5€, Tortino di carciofi 12€", signature: "Petto di pollo al burro, Tortino di carciofi", tip: "Non accettano prenotazioni a cena, arriva presto" },
-        { id: 13, name: "Hosteria Giusti", city: "Modena", region: "Emilia-Romagna", type: "Osteria", cuisine: "Emiliana", price: "€€ (35-50€)", lat: 44.6469, lon: 10.9253, stars: 4, hours: "Lun-Sab 12:00-15:00, 19:00-22:00", menu: "Tigelle e gnocco fritto 12€, Tortellini in brodo 16€, Lambrusco 8€ bottiglia", signature: "Tigelle, Gnocco fritto, Salumi", tip: "Salumeria storica, pranzo al banco" },
-        { id: 14, name: "Trattoria da Enzo", city: "Roma", region: "Lazio", type: "Trattoria", cuisine: "Romana", price: "€€ (25-40€)", lat: 41.8863, lon: 12.4764, stars: 4, hours: "Lun-Sab 12:30-15:00, 19:30-23:00", menu: "Gricia 12€, Amatriciana 13€, Carbonara 13€, Cacio e pepe 12€, Carciofi alla giudia 8€", signature: "Amatriciana, Carciofi alla giudia", tip: "Fila dalle 12:00, non prenotano" },
-        { id: 15, name: "Armando al Pantheon", city: "Roma", region: "Lazio", type: "Trattoria", cuisine: "Romana", price: "€€ (35-50€)", lat: 41.8986, lon: 12.4765, stars: 4, hours: "Lun-Sab 12:30-15:00, 19:30-23:00", menu: "Gricia 14€, Saltimbocca 18€, Coda alla vaccinara 16€", signature: "Gricia, Saltimbocca alla romana", tip: "Storica dal 1961, prenota sempre" },
-        { id: 16, name: "Trattoria da Cesare al Casaletto", city: "Roma", region: "Lazio", type: "Trattoria", cuisine: "Romana", price: "€€ (30-45€)", lat: 41.8805, lon: 12.4459, stars: 4, hours: "Mer-Lun 12:45-15:00, 19:45-23:00", menu: "Supplì 4€, Fiori di zucca 5€, Cacio e pepe 13€, Carbonara 14€", signature: "Supplì, Fiori di zucca fritti", tip: "I migliori fritti di Roma" },
-        { id: 17, name: "Taverna Estia", city: "Napoli", region: "Campania", type: "Trattoria", cuisine: "Napoletana", price: "€€ (30-45€)", lat: 40.8518, lon: 14.2681, stars: 4, hours: "Mar-Dom 12:30-15:30, 19:30-23:30", menu: "Genovese 14€, Ragù napoletano 16€, Polpette 10€, Parmigiana 12€", signature: "Genovese, Ragù napoletano", tip: "Prenota, molto affollata" },
-        { id: 18, name: "Trattoria da Nennella", city: "Napoli", region: "Campania", type: "Trattoria", cuisine: "Napoletana", price: "€ (20-30€)", lat: 40.8487, lon: 14.2536, stars: 4, hours: "Lun-Dom 12:00-16:00, 19:00-23:30", menu: "Pasta e patate 8€, Polpette 7€, Pasta e fagioli 8€, Sfogliatella 3€", signature: "Pasta e patate, Polpette al sugo", tip: "Atmosfera allegra e rumorosa, tipica napoletana" },
-        { id: 19, name: "Trattoria della Posta", city: "Monforte d'Alba", region: "Piemonte", type: "Trattoria", cuisine: "Piemontese", price: "€€ (40-60€)", lat: 44.5825, lon: 7.9683, stars: 4, hours: "Gio-Mar 12:00-14:30, 19:30-22:00", menu: "Tajarin al tartufo 22€, Brasato al Barolo 28€, Vitello tonnato 16€", signature: "Tajarin al tartufo, Brasato al Barolo", tip: "Prenota per il tartufo bianco in autunno" },
-        { id: 20, name: "Antica Trattoria della Pesa", city: "Milano", region: "Lombardia", type: "Trattoria", cuisine: "Lombarda", price: "€€ (40-55€)", lat: 45.4636, lon: 9.1818, stars: 4, hours: "Lun-Sab 12:30-14:30, 19:30-22:30", menu: "Cotoletta 24€, Ossobuco 26€, Risotto giallo 14€, Cassoeula 22€", signature: "Cotoletta alla milanese, Ossobuco", tip: "Dal 1880, storica trattoria milanese" },
-        
-        // ========== OSTERIE AUTENTICHE ==========
-        { id: 21, name: "Osteria dell'Arco", city: "Torino", region: "Piemonte", type: "Osteria", cuisine: "Piemontese", price: "€€ (35-50€)", lat: 45.0703, lon: 7.6869, stars: 4, hours: "Lun-Sab 12:00-14:30, 19:00-22:30", menu: "Agnolotti del Plin 16€, Bollito misto 25€, Bunet 5€", signature: "Agnolotti del Plin, Bunet", tip: "Prenota il bollito il sabato a mezzogiorno" },
-        { id: 22, name: "Osteria alle Testiere", city: "Venezia", region: "Veneto", type: "Osteria", cuisine: "Veneziana", price: "€€€ (60-85€)", lat: 45.4333, lon: 12.3333, stars: 4, hours: "Mar-Sab 12:30-14:30, 19:30-22:00", menu: "Gnocchi di zucca 18€, Sarde in saor 14€, Fegato alla veneziana 22€", signature: "Sarde in saor, Fegato alla veneziana", tip: "Solo 26 posti, prenota con 2 settimane" },
-        { id: 23, name: "Osteria del Tempo Perso", city: "Ostuni", region: "Puglia", type: "Osteria", cuisine: "Pugliese", price: "€€ (35-50€)", lat: 40.7300, lon: 17.5761, stars: 4, hours: "Mar-Dom 12:30-14:30, 19:30-22:30", menu: "Orecchiette con cime di rapa 14€, Fave e cicorie 12€, Bombette 16€", signature: "Orecchiette, Fave e cicorie", tip: "Cucina bianca pugliese autentica" },
-        { id: 24, name: "Osteria dei Vespri", city: "Palermo", region: "Sicilia", type: "Osteria", cuisine: "Siciliana", price: "€€€ (60-85€)", lat: 38.1157, lon: 13.3618, stars: 4, hours: "Mar-Sab 12:30-14:30, 19:30-22:30", menu: "Pasta con le sarde 18€, Caponata 12€, Involtini di pesce spada 22€", signature: "Pasta con le sarde, Caponata", tip: "Elegante nel centro storico di Palermo" },
-        { id: 25, name: "Osteria al Ponte", city: "Trieste", region: "Friuli Venezia Giulia", type: "Osteria", cuisine: "Triestina", price: "€€ (35-50€)", lat: 45.6495, lon: 13.7768, stars: 4, hours: "Mar-Sab 12:30-15:00, 19:00-22:30", menu: "Brodetto 18€, Jota 14€, Sarde in saor 12€", signature: "Brodetto di pesce, Jota", tip: "Pesce fresco del Golfo di Trieste" },
-        
-        // ========== PASTICCERIE STORICHE ==========
-        { id: 26, name: "Caffè Sicilia", city: "Noto", region: "Sicilia", type: "Pasticceria", cuisine: "Dolci", price: "€€ (15-30€)", lat: 36.8923, lon: 15.0701, stars: 5, hours: "Mar-Dom 8:00-20:00", menu: "Cannolo 5€, Cassata 7€, Granita con brioche 6€, Minne di Sant'Agata 4€", signature: "Cannolo, Granita con brioche", tip: "Tra i migliori pasticceri al mondo, Corrado Assenza" },
-        { id: 27, name: "Pasticceria Marchesi", city: "Milano", region: "Lombardia", type: "Pasticceria", cuisine: "Dolci", price: "€€€ (20-40€)", lat: 45.4655, lon: 9.1912, stars: 4, hours: "Lun-Dom 7:30-20:30", menu: "Panettone 35€, Torte 8€/fetta, Paste 3€, Colomba 30€", signature: "Panettone, Paste di meliga", tip: "Storica dal 1824, ora Prada" },
-        { id: 28, name: "Pasticceria Scaturchio", city: "Napoli", region: "Campania", type: "Pasticceria", cuisine: "Dolci", price: "€ (10-20€)", lat: 40.8534, lon: 14.2678, stars: 4, hours: "Lun-Dom 7:00-21:00", menu: "Sfogliatella 3€, Babà 3.5€, Pastiera 4€, Ministeriale 2.5€", signature: "Sfogliatella, Ministeriale", tip: "La pasticceria storica di Napoli dal 1903" },
-        { id: 29, name: "Pasticceria Giolitti", city: "Roma", region: "Lazio", type: "Pasticceria", cuisine: "Dolci", price: "€€ (10-25€)", lat: 41.9005, lon: 12.4779, stars: 4, hours: "Lun-Dom 7:00-21:00", menu: "Gelato 4€, Maritozzo 4€, Pasticcini 3€", signature: "Maritozzo con panna, Gelato", tip: "Storica dal 1900, famosa per il maritozzo" },
-        { id: 30, name: "Pasticceria Attanasio", city: "Napoli", region: "Campania", type: "Pasticceria", cuisine: "Dolci", price: "€ (5-15€)", lat: 40.8542, lon: 14.2631, stars: 4, hours: "Lun-Dom 5:00-21:00", menu: "Sfogliatella frolla 2.5€, Sfogliatella riccia 2.5€, Babà 3€", signature: "Sfogliatella, Babà", tip: "Le migliori sfogliatelle di Napoli, aperto 24h" },
-        { id: 31, name: "Pasticceria Martesana", city: "Milano", region: "Lombardia", type: "Pasticceria", cuisine: "Dolci", price: "€€ (15-30€)", lat: 45.4762, lon: 9.2037, stars: 4, hours: "Mar-Dom 7:30-20:00", menu: "Maritozzo 5€, Cannolo 4€, Torte 6€/fetta", signature: "Maritozzo, Cannolo siciliano", tip: "Fila fuori per il maritozzo" },
-        { id: 32, name: "Pasticceria Pizzo", city: "Palermo", region: "Sicilia", type: "Pasticceria", cuisine: "Dolci", price: "€ (10-20€)", lat: 38.1155, lon: 13.3625, stars: 4, hours: "Lun-Dom 7:00-21:00", menu: "Cannolo 3.5€, Cassata 5€, Granita 4€", signature: "Cannolo, Granita al caffè", tip: "Storica dal 1950" },
-        
-        // ========== BAR STORICI E CAFFETTERIE ==========
-        { id: 33, name: "Caffè Florian", city: "Venezia", region: "Veneto", type: "Bar", cuisine: "Caffetteria", price: "€€€ (15-30€)", lat: 45.4339, lon: 12.3375, stars: 4, hours: "Lun-Dom 10:00-21:00", menu: "Caffè 10€, Spritz 15€, Pastine 5€", signature: "Caffè, Spritz", tip: "Il più antico caffè d'Italia, dal 1720" },
-        { id: 34, name: "Caffè Gambrinus", city: "Napoli", region: "Campania", type: "Bar", cuisine: "Caffetteria", price: "€€ (5-15€)", lat: 40.8386, lon: 14.2517, stars: 4, hours: "Lun-Dom 7:00-21:00", menu: "Caffè 2€, Sfogliatella 3€, Tramezzino 5€", signature: "Caffè, Sfogliatella", tip: "Storico dal 1860, chicca napoletana" },
-        { id: 35, name: "Caffè San Marco", city: "Trieste", region: "Friuli Venezia Giulia", type: "Bar", cuisine: "Caffetteria", price: "€€ (5-15€)", lat: 45.6508, lon: 13.7712, stars: 4, hours: "Lun-Dom 7:30-20:00", menu: "Caffè 2.5€, Cappuccino 3€, Pastina 2.5€", signature: "Caffè, Illy", tip: "Storico caffè letterario" },
-        { id: 36, name: "Caffè Greco", city: "Roma", region: "Lazio", type: "Bar", cuisine: "Caffetteria", price: "€€€ (10-20€)", lat: 41.9046, lon: 12.4793, stars: 4, hours: "Lun-Dom 9:00-20:00", menu: "Caffè 8€, Cioccolata 10€, Pastine 5€", signature: "Caffè, Cioccolata", tip: "Il più antico caffè di Roma, dal 1760" },
-        { id: 37, name: "Caffè Mulassano", city: "Torino", region: "Piemonte", type: "Bar", cuisine: "Caffetteria", price: "€€ (5-15€)", lat: 45.0725, lon: 7.6836, stars: 4, hours: "Lun-Sab 7:30-20:00", menu: "Caffè 2€, Cioccolata calda 5€, Tramezzino 4€", signature: "Cioccolata calda, Tramezzino", tip: "Inventori del tramezzino" },
-        { id: 38, name: "Antico Caffè Spinnato", city: "Palermo", region: "Sicilia", type: "Bar", cuisine: "Caffetteria", price: "€€ (5-15€)", lat: 38.1168, lon: 13.3619, stars: 4, hours: "Lun-Dom 6:30-22:00", menu: "Caffè 2€, Granita 4€, Brioche 2.5€", signature: "Granita con brioche", tip: "La migliore granita di Palermo" },
-        
-        // ========== PIZZERIE NAPOLETANE ==========
-        { id: 39, name: "L'Antica Pizzeria da Michele", city: "Napoli", region: "Campania", type: "Pizzeria", cuisine: "Napoletana", price: "€ (5-15€)", lat: 40.8535, lon: 14.2574, stars: 5, hours: "Lun-Dom 11:00-23:00", menu: "Margherita 5€, Marinara 4.5€", signature: "Margherita, Marinara", tip: "Fila anche 1 ora, ne vale la pena" },
-        { id: 40, name: "Pizzeria Sorbillo", city: "Napoli", region: "Campania", type: "Pizzeria", cuisine: "Napoletana", price: "€ (6-15€)", lat: 40.8520, lon: 14.2592, stars: 4, hours: "Lun-Dom 12:00-23:00", menu: "Margherina 5.5€, Marinara 5€, Fritta 7€", signature: "Margherita, Pizza fritta", tip: "Storica dal 1935" },
-        { id: 41, name: "50 Kalò", city: "Napoli", region: "Campania", type: "Pizzeria", cuisine: "Napoletana", price: "€€ (10-20€)", lat: 40.8293, lon: 14.2257, stars: 4, hours: "Mar-Dom 12:30-15:00, 19:30-23:30", menu: "Margherita 7€, Calzone 8€, Pizza fritta 9€", signature: "Margherita, Calzone", tip: "Tra le migliori pizzerie di Napoli" },
-        { id: 42, name: "Pizzeria Starita", city: "Napoli", region: "Campania", type: "Pizzeria", cuisine: "Napoletana", price: "€€ (10-20€)", lat: 40.8642, lon: 14.2415, stars: 4, hours: "Mer-Lun 12:30-15:30, 19:30-23:30", menu: "Margherita 6€, Montanara 5€, Frittura 8€", signature: "Montanara, Margherita", tip: "Storica dal 1901" },
-        { id: 43, name: "Gino Sorbillo", city: "Milano", region: "Lombardia", type: "Pizzeria", cuisine: "Napoletana", price: "€€ (12-25€)", lat: 45.4665, lon: 9.1915, stars: 4, hours: "Lun-Dom 12:00-15:00, 19:00-23:30", menu: "Margherita 8€, Marinara 7€, Calzone 10€", signature: "Margherina, Marinara", tip: "La stessa qualità di Napoli" },
-        { id: 44, name: "Antica Pizzeria Port'Alba", city: "Napoli", region: "Campania", type: "Pizzeria", cuisine: "Napoletana", price: "€ (5-12€)", lat: 40.8502, lon: 14.2512, stars: 4, hours: "Lun-Dom 11:00-23:00", menu: "Margherita 4.5€, Marinara 4€", signature: "Margherita", tip: "La più antica pizzeria del mondo (1738)" },
-        
-        // ========== GELATERIE ARTIGIANALI ==========
-        { id: 45, name: "Gelateria La Romana", city: "Roma", region: "Lazio", type: "Gelateria", cuisine: "Gelato", price: "€ (3-8€)", lat: 41.9025, lon: 12.4745, stars: 4, hours: "Lun-Dom 11:00-23:00", menu: "Cono 3€, Coppa 5€, Panna 1€", signature: "Crema, Cioccolato, Panna", tip: "La panna montata in cima è gratuita" },
-        { id: 46, name: "Gelateria del Teatro", city: "Roma", region: "Lazio", type: "Gelateria", cuisine: "Gelato", price: "€ (3-8€)", lat: 41.8925, lon: 12.4732, stars: 4, hours: "Lun-Dom 12:00-22:00", menu: "Cono 3.5€, Coppa 5€", signature: "Riso, Cioccolato, Pistacchio", tip: "Gelati artigianali con ingredienti di qualità" },
-        { id: 47, name: "Gelateria Dondoli", city: "San Gimignano", region: "Toscana", type: "Gelateria", cuisine: "Gelato", price: "€ (3-8€)", lat: 43.4678, lon: 11.0431, stars: 5, hours: "Lun-Dom 10:00-22:00", menu: "Cono 4€, Coppa 6€", signature: "Crema di Santa Fina, Champelmo", tip: "Campione mondiale del gelato" },
-        { id: 48, name: "Gelateria Cavour", city: "Firenze", region: "Toscana", type: "Gelateria", cuisine: "Gelato", price: "€ (3-8€)", lat: 43.7765, lon: 11.2545, stars: 4, hours: "Lun-Dom 10:30-23:00", menu: "Cono 3€, Coppa 4.5€", signature: "Crema, Pistacchio", tip: "Gelato artigianale dal 1990" },
-        { id: 49, name: "Gelateria Latte e Cannella", city: "Siracusa", region: "Sicilia", type: "Gelateria", cuisine: "Gelato", price: "€ (3-8€)", lat: 37.0646, lon: 15.2932, stars: 4, hours: "Lun-Dom 10:00-23:00", menu: "Cono 3€, Brioche con gelato 4.5€", signature: "Brioche con gelato", tip: "Famosa per la brioche con gelato" },
-        { id: 50, name: "Grom", city: "Torino", region: "Piemonte", type: "Gelateria", cuisine: "Gelato", price: "€ (3-7€)", lat: 45.0687, lon: 7.6845, stars: 4, hours: "Lun-Dom 11:00-23:00", menu: "Cono 3.5€, Coppa 5€", signature: "Crema di Grom, Cioccolato", tip: "Ingredienti biologici e naturali" },
-        
-        // ========== RISTORANTI DI PESCE ==========
-        { id: 51, name: "Grotta Palazzese", city: "Polignano", region: "Puglia", type: "Ristorante", cuisine: "Marinara", price: "€€€€ (150-250€)", lat: 40.9963, lon: 17.2180, stars: 5, hours: "Apr-Ott 19:00-23:00", menu: "Menu degustazione 180€, Crudités di mare 45€, Astice 80€", signature: "Crudo di mare, Calamari", tip: "Location unica al mondo, prenota con mesi" },
-        { id: 52, name: "Al Covo", city: "Venezia", region: "Veneto", type: "Ristorante", cuisine: "Marinara", price: "€€€ (70-100€)", lat: 45.4330, lon: 12.3365, stars: 4, hours: "Mer-Dom 12:30-14:30, 19:30-22:00", menu: "Grilled seafood 35€, Spaghetti alle vongole 22€", signature: "Pesce di laguna", tip: "Prenota con anticipo" },
-        { id: 53, name: "Ristorante da Giacomo", city: "Milano", region: "Lombardia", type: "Ristorante", cuisine: "Marinara", price: "€€€ (80-120€)", lat: 45.4715, lon: 9.1945, stars: 4, hours: "Lun-Sab 12:30-15:00, 19:30-23:00", menu: "Risotto con frutti di mare 28€, Grigliata mista 45€", signature: "Risotto, Crudo di mare", tip: "Milanesi e pesce" },
-        { id: 54, name: "Osteria del Mare", city: "Alghero", region: "Sardegna", type: "Osteria", cuisine: "Marinara", price: "€€€ (60-90€)", lat: 40.5582, lon: 8.3236, stars: 4, hours: "Mar-Dom 12:30-14:30, 19:30-22:30", menu: "Aragosta 50€, Fregola con arselle 18€", signature: "Aragosta, Fregola", tip: "Pesce fresco del Mediterraneo" }
+        // ========== ROMA ==========
+        { 
+            id: 1, name: "Armando al Pantheon", city: "Roma", region: "Lazio", type: "Trattoria", cuisine: "Romana", price: "€€ (35-50€)", lat: 41.8986, lon: 12.4765, stars: 4, hours: "Lun-Sab 12:30-15:00, 19:30-23:00",
+            menu: {
+                antipasti: ["Supplì al telefono €4.50", "Carciofo alla giudia €8.00", "Fiori di zucca fritti €5.00", "Prosciutto e melone €12.00"],
+                primi: ["Gricia €14.00", "Amatriciana €14.00", "Carbonara €14.00", "Cacio e pepe €13.00"],
+                secondi: ["Saltimbocca alla romana €18.00", "Coda alla vaccinara €16.00", "Abbacchio scottadito €19.00", "Trippa alla romana €15.00"],
+                dolci: ["Tiramisù €6.00", "Crostata di ricotta €5.00", "Tartufo €5.50"],
+                vini: ["Frascati Superiore €18/bottle", "Chianti Classico €22/bottle", "Brunello di Montalcino €45/bottle", "Amarone della Valpolicella €38/bottle"],
+                bibite: ["Acqua 1.5L €2.50", "Coca Cola €3.00", "Birra artigianale €5.00", "Vino della casa €4.00/calice"]
+            },
+            signature: "Gricia, Saltimbocca alla romana", tip: "Storica dal 1961, prenota sempre"
+        },
+        { 
+            id: 2, name: "Trattoria Da Enzo", city: "Roma", region: "Lazio", type: "Trattoria", cuisine: "Romana", price: "€€ (25-40€)", lat: 41.8863, lon: 12.4764, stars: 4, hours: "Lun-Sab 12:30-15:00, 19:30-23:00",
+            menu: {
+                antipasti: ["Supplì €4.00", "Carciofo alla romana €7.00", "Puntarelle €8.00"],
+                primi: ["Gricia €12.00", "Amatriciana €13.00", "Carbonara €13.00", "Cacio e pepe €12.00"],
+                secondi: ["Saltimbocca €16.00", "Coda alla vaccinara €15.00"],
+                dolci: ["Tiramisù €5.00", "Torta della nonna €4.50"],
+                vini: ["Vino della casa €15/bottle", "Frascati €16/bottle"],
+                bibite: ["Acqua €2.00", "Birra €4.00"]
+            },
+            signature: "Amatriciana, Carciofi alla giudia", tip: "Fila dalle 12:00, non prenotano"
+        },
+        // ========== NAPOLI ==========
+        { 
+            id: 3, name: "L'Antica Pizzeria da Michele", city: "Napoli", region: "Campania", type: "Pizzeria", cuisine: "Napoletana", price: "€ (5-15€)", lat: 40.8535, lon: 14.2574, stars: 5, hours: "Lun-Dom 11:00-23:00",
+            menu: {
+                antipasti: ["Frittura di pizza €5.00", "Crocche €3.00", "Olive all'ascolana €4.00"],
+                pizze: ["Margherita €5.00", "Marinara €4.50", "Pizza fritta €6.00"],
+                dolci: ["Sfogliatella €2.50", "Babà €2.50"],
+                vini: ["Vino della casa €12/bottle", "Peroni €3.50"],
+                bibite: ["Acqua €1.50", "Coca Cola €2.50"]
+            },
+            signature: "Margherita, Marinara", tip: "Fila anche 1 ora, ne vale la pena"
+        },
+        { 
+            id: 4, name: "Taverna Estia", city: "Napoli", region: "Campania", type: "Trattoria", cuisine: "Napoletana", price: "€€ (30-45€)", lat: 40.8518, lon: 14.2681, stars: 4, hours: "Mar-Dom 12:30-15:30, 19:30-23:30",
+            menu: {
+                antipasti: ["Polpette al sugo €8.00", "Parmigiana di melanzane €10.00", "Mozzarella di bufala €9.00"],
+                primi: ["Genovese €14.00", "Ragù napoletano €16.00", "Pasta e patate €10.00", "Spaghetti alle vongole €15.00"],
+                secondi: ["Salsiccia e friarielli €12.00", "Pesce spada alla ghiotta €18.00"],
+                dolci: ["Pastiera €5.00", "Babà €4.00"],
+                vini: ["Lacryma Christi €25/bottle", "Greco di Tufo €22/bottle", "Falanghina €18/bottle"],
+                bibite: ["Acqua €2.00", "Birra Moretti €4.00"]
+            },
+            signature: "Genovese, Ragù napoletano", tip: "Prenota, molto affollata"
+        },
+        // ========== FIRENZE ==========
+        { 
+            id: 5, name: "Trattoria da Burde", city: "Firenze", region: "Toscana", type: "Trattoria", cuisine: "Toscana", price: "€€ (35-55€)", lat: 43.7863, lon: 11.2597, stars: 4, hours: "Lun-Sab 12:30-14:30, 19:30-22:30",
+            menu: {
+                antipasti: ["Crostini toscani €8.00", "Prosciutto e melone €12.00", "Lardo di Colonnata €9.00"],
+                primi: ["Pappardelle al cinghiale €14.00", "Ribollita €12.00", "Pici cacio e pepe €13.00"],
+                secondi: ["Bistecca alla fiorentina €50/kg", "Arrosto misto €18.00", "Fegatini €10.00"],
+                dolci: ["Cantucci e vin santo €6.00", "Torta della nonna €5.00"],
+                vini: ["Chianti Classico €20/bottle", "Brunello di Montalcino €50/bottle", "Vino Nobile €28/bottle"],
+                bibite: ["Acqua €2.00", "Birra artigianale €5.00"]
+            },
+            signature: "Bistecca alla fiorentina", tip: "Chiedi la tagliata di chianina"
+        },
+        { 
+            id: 6, name: "Trattoria Sostanza", city: "Firenze", region: "Toscana", type: "Trattoria", cuisine: "Toscana", price: "€€ (30-45€)", lat: 43.7777, lon: 11.2517, stars: 4, hours: "Lun-Sab 12:30-14:30, 19:30-22:00",
+            menu: {
+                antipasti: ["Tortino di carciofi €12.00", "Crostini €6.00"],
+                primi: ["Pasta al pomodoro €10.00", "Risotto €12.00"],
+                secondi: ["Petto di pollo al burro €16.00", "Bistecca €45.00", "Cotoletta €18.00"],
+                dolci: ["Meringata €5.00", "Zuppa inglese €5.00"],
+                vini: ["Vino della casa €12/bottle", "Chianti €16/bottle"],
+                bibite: ["Acqua €2.00", "Birra €4.00"]
+            },
+            signature: "Petto di pollo al burro", tip: "Non accettano prenotazioni a cena"
+        },
+        // ========== MODENA ==========
+        { 
+            id: 7, name: "Osteria Francescana", city: "Modena", region: "Emilia-Romagna", type: "Stellato", cuisine: "Innovativa", price: "€€€€ (350-500€)", lat: 44.6471, lon: 10.9252, stars: 5, hours: "Mar-Sab 12:30-14:00, 19:30-21:30",
+            menu: {
+                antipasti: ["Foie gras alla cenere €45.00", "Parmigiano Reggiano 5 età €38.00"],
+                primi: ["Tortellini con panna di parmigiano €55.00", "Spaghetti al pomodoro €48.00"],
+                secondi: ["Anatra in tre cotture €65.00", "Maialino croccante €62.00"],
+                dolci: ["Tiramisù rivisitato €22.00", "Zuppa inglese €20.00"],
+                vini: ["Selezione cantina da €80 a €5000", "Amarone Riserva €120/bottle", "Barolo €95/bottle"],
+                bibite: ["Acqua €8.00", "Degustazione vini abbinata €180"]
+            },
+            signature: "Cinque età del Parmigiano", tip: "Prenotazione con 6 mesi di anticipo"
+        },
+        { 
+            id: 8, name: "Hosteria Giusti", city: "Modena", region: "Emilia-Romagna", type: "Osteria", cuisine: "Emiliana", price: "€€ (35-50€)", lat: 44.6469, lon: 10.9253, stars: 4, hours: "Lun-Sab 12:00-15:00, 19:00-22:00",
+            menu: {
+                antipasti: ["Salumi misti €12.00", "Tigelle e gnocco fritto €12.00", "Culatello €14.00"],
+                primi: ["Tortellini in brodo €16.00", "Tagliatelle al ragù €14.00", "Lasagne €13.00"],
+                secondi: ["Bollito misto €20.00", "Cotoletta alla bolognese €18.00"],
+                dolci: ["Zuppa inglese €5.00", "Torta barozzi €5.00"],
+                vini: ["Lambrusco €12/bottle", "Sangiovese €15/bottle"],
+                bibite: ["Acqua €2.00", "Birra €4.00"]
+            },
+            signature: "Tigelle, Gnocco fritto", tip: "Salumeria storica, pranzo al banco"
+        },
+        // ========== VENEZIA ==========
+        { 
+            id: 9, name: "Osteria alle Testiere", city: "Venezia", region: "Veneto", type: "Osteria", cuisine: "Veneziana", price: "€€€ (60-85€)", lat: 45.4333, lon: 12.3333, stars: 4, hours: "Mar-Sab 12:30-14:30, 19:30-22:00",
+            menu: {
+                antipasti: ["Sarde in saor €14.00", "Carpaccio di pesce €16.00", "Moleche fritte €18.00"],
+                primi: ["Gnocchi di zucca €18.00", "Bigoli in salsa €16.00", "Risotto di gò €22.00"],
+                secondi: ["Fegato alla veneziana €22.00", "Sogliola al burro €24.00", "Seppie con polenta €20.00"],
+                dolci: ["Tiramisù €7.00", "Baicoli con zabaione €8.00"],
+                vini: ["Soave €22/bottle", "Prosecco €18/bottle", "Amarone €45/bottle"],
+                bibite: ["Acqua €2.50", "Birra €5.00"]
+            },
+            signature: "Sarde in saor, Fegato alla veneziana", tip: "Solo 26 posti, prenota con 2 settimane"
+        },
+        // ========== MILANO ==========
+        { 
+            id: 10, name: "Antica Trattoria della Pesa", city: "Milano", region: "Lombardia", type: "Trattoria", cuisine: "Lombarda", price: "€€ (40-55€)", lat: 45.4636, lon: 9.1818, stars: 4, hours: "Lun-Sab 12:30-14:30, 19:30-22:30",
+            menu: {
+                antipasti: ["Vitello tonnato €14.00", "Insalata di gamberi €12.00"],
+                primi: ["Risotto alla milanese €14.00", "Minestrone alla milanese €12.00"],
+                secondi: ["Cotoletta alla milanese €24.00", "Ossobuco €26.00", "Cassoeula €22.00"],
+                dolci: ["Panettone €6.00", "Tortelli €5.00"],
+                vini: ["Barbera €18/bottle", "Nebbiolo €25/bottle"],
+                bibite: ["Acqua €2.00", "Birra €4.50"]
+            },
+            signature: "Cotoletta, Ossobuco", tip: "Dal 1880, storica trattoria milanese"
+        },
+        // ========== BOLOGNA ==========
+        { 
+            id: 11, name: "Trattoria Anna Maria", city: "Bologna", region: "Emilia-Romagna", type: "Trattoria", cuisine: "Bolognese", price: "€€ (30-45€)", lat: 44.4949, lon: 11.3426, stars: 4, hours: "Lun-Sab 12:30-14:30, 19:30-22:00",
+            menu: {
+                antipasti: ["Crescentine e salumi €10.00", "Mortadella €8.00"],
+                primi: ["Tagliatelle al ragù €14.00", "Tortellini in brodo €15.00", "Lasagne €13.00"],
+                secondi: ["Cotoletta alla bolognese €16.00", "Bollito misto €18.00"],
+                dolci: ["Zuppa inglese €5.00", "Torta di riso €4.50"],
+                vini: ["Lambrusco €12/bottle", "Sangiovese €14/bottle"],
+                bibite: ["Acqua €2.00", "Birra €4.00"]
+            },
+            signature: "Tagliatelle al ragù", tip: "Prenota il giorno prima"
+        },
+        // ========== PALERMO ==========
+        { 
+            id: 12, name: "Osteria dei Vespri", city: "Palermo", region: "Sicilia", type: "Osteria", cuisine: "Siciliana", price: "€€€ (60-85€)", lat: 38.1157, lon: 13.3618, stars: 4, hours: "Mar-Sab 12:30-14:30, 19:30-22:30",
+            menu: {
+                antipasti: ["Caponata €12.00", "Sarde a beccafico €14.00", "Crocchè di patate €8.00"],
+                primi: ["Pasta con le sarde €18.00", "Busiate al pesto trapanese €16.00", "Anelletti al forno €15.00"],
+                secondi: ["Pesce spada alla ghiotta €22.00", "Involtini di pesce spada €20.00"],
+                dolci: ["Cannolo €6.00", "Cassata €7.00"],
+                vini: ["Nero d'Avola €22/bottle", "Etna Rosso €28/bottle"],
+                bibite: ["Acqua €2.50", "Birra Messina €5.00"]
+            },
+            signature: "Pasta con le sarde, Caponata", tip: "Elegante nel centro storico"
+        },
+        // ========== PASTICCERIE ==========
+        { 
+            id: 13, name: "Caffè Sicilia", city: "Noto", region: "Sicilia", type: "Pasticceria", cuisine: "Dolci", price: "€€ (15-30€)", lat: 36.8923, lon: 15.0701, stars: 5, hours: "Mar-Dom 8:00-20:00",
+            menu: {
+                dolci: ["Cannolo €5.00", "Cassata €7.00", "Granita con brioche €6.00", "Minne di Sant'Agata €4.00", "Torta mandorle €5.00"],
+                caffe: ["Caffè €2.00", "Cappuccino €2.50", "Cioccolata calda €4.00"],
+                bibite: ["Aranciata €3.00", "Limonata €3.00", "Acqua €1.50"]
+            },
+            signature: "Cannolo, Granita", tip: "Tra i migliori pasticceri al mondo"
+        },
+        { 
+            id: 14, name: "Pasticceria Scaturchio", city: "Napoli", region: "Campania", type: "Pasticceria", cuisine: "Dolci", price: "€ (10-20€)", lat: 40.8534, lon: 14.2678, stars: 4, hours: "Lun-Dom 7:00-21:00",
+            menu: {
+                dolci: ["Sfogliatella riccia €3.00", "Sfogliatella frolla €3.00", "Babà €3.50", "Pastiera €4.00", "Ministeriale €2.50"],
+                caffe: ["Caffè €1.50", "Cappuccino €2.00"],
+                bibite: ["Acqua €1.50", "Aranciata €2.50"]
+            },
+            signature: "Sfogliatella, Ministeriale", tip: "Pasticceria storica dal 1903"
+        },
+        // ========== GELATERIE ==========
+        { 
+            id: 15, name: "Gelateria Dondoli", city: "San Gimignano", region: "Toscana", type: "Gelateria", cuisine: "Gelato", price: "€ (3-8€)", lat: 43.4678, lon: 11.0431, stars: 5, hours: "Lun-Dom 10:00-22:00",
+            menu: {
+                gelati: ["Crema di Santa Fina €4.00", "Champelmo €4.00", "Cioccolato €3.50", "Pistacchio €4.00", "Yogurt €3.50"],
+                bibite: ["Acqua €1.50", "Caffè €2.00"]
+            },
+            signature: "Crema di Santa Fina", tip: "Campione mondiale del gelato"
+        },
+        // ========== PUGLIA ==========
+        { 
+            id: 16, name: "Osteria del Tempo Perso", city: "Ostuni", region: "Puglia", type: "Osteria", cuisine: "Pugliese", price: "€€ (35-50€)", lat: 40.7300, lon: 17.5761, stars: 4, hours: "Mar-Dom 12:30-14:30, 19:30-22:30",
+            menu: {
+                antipasti: ["Bombette pugliesi €12.00", "Fave e cicorie €10.00", "Mozzarella di Andria €8.00"],
+                primi: ["Orecchiette con cime di rapa €14.00", "Cavatelli al sugo €13.00", "Sagne 'ncannulate €12.00"],
+                secondi: ["Grigliata mista €18.00", "Pesce alla brace €20.00"],
+                dolci: ["Pasticciotto €4.00", "Cartellate €5.00"],
+                vini: ["Primitivo €16/bottle", "Negroamaro €14/bottle", "Salice Salentino €18/bottle"],
+                bibite: ["Acqua €2.00", "Birra €4.00"]
+            },
+            signature: "Orecchiette, Fave e cicorie", tip: "Cucina bianca pugliese autentica"
+        },
+        // ========== LIGURIA ==========
+        { 
+            id: 17, name: "Trattoria da Maria", city: "Genova", region: "Liguria", type: "Trattoria", cuisine: "Ligure", price: "€€ (30-45€)", lat: 44.4056, lon: 8.9463, stars: 4, hours: "Lun-Sab 12:00-14:30, 19:30-22:00",
+            menu: {
+                antipasti: ["Farinata €5.00", "Cappon magro €14.00", "Sardenara €8.00"],
+                primi: ["Pasta al pesto €14.00", "Trofie al pesto €14.00", "Lasagne al pesto €13.00"],
+                secondi: ["Pesce al forno €18.00", "Cima alla genovese €16.00"],
+                dolci: ["Pandolce €5.00", "Canestrelli €4.00"],
+                vini: ["Pigato €18/bottle", "Vermentino €16/bottle"],
+                bibite: ["Acqua €2.00", "Birra €4.00"]
+            },
+            signature: "Pasta al pesto", tip: "Il miglior pesto di Genova"
+        }
     ]
 };
 
-// Aggiungo altri 300+ locali generati dinamicamente per regioni e tipologie
-const regionsList = ["Piemonte","Valle d'Aosta","Lombardia","Trentino Alto Adige","Veneto","Friuli Venezia Giulia","Liguria","Emilia-Romagna","Toscana","Umbria","Marche","Lazio","Abruzzo","Molise","Campania","Puglia","Basilicata","Calabria","Sicilia","Sardegna"];
-const typesList = ["Trattoria","Osteria","Ristorante","Stellato","Pasticceria","Bar","Pizzeria","Gelateria"];
-const cuisinesMap = {
-    "Piemonte":"Piemontese","Valle d'Aosta":"Valdostana","Lombardia":"Lombarda","Veneto":"Veneziana","Emilia-Romagna":"Emiliana","Toscana":"Toscana","Lazio":"Romana","Campania":"Napoletana","Sicilia":"Siciliana","Sardegna":"Sarda","Puglia":"Pugliese","Liguria":"Ligure"
-};
+// Aggiungi altri locali per coprire tutte le regioni
+const extraRegions = [
+    { name: "Trattoria al Faggio", city: "Trento", region: "Trentino Alto Adige", type: "Trattoria", cuisine: "Trentina", price: "€€ (30-45€)", lat: 46.0748, lon: 11.1217, stars: 4,
+      menu: { antipasti: ["Canederli €12", "Speck e formaggi €10"], primi: ["Strangolapreti €14", "Tortellini di valle €13"], secondi: ["Polenta e osei €16", "Gulasch €15"], dolci: ["Strudel €5"], vini: ["Teroldego €18"], bibite: ["Acqua €2"] } },
+    { name: "Le Petit Restaurant", city: "Courmayeur", region: "Valle d'Aosta", type: "Ristorante", cuisine: "Valdostana", price: "€€€ (60-90€)", lat: 45.7912, lon: 6.9688, stars: 4,
+      menu: { antipasti: ["Fonduta €22", "Prosciutto di Bosses €14"], primi: ["Zuppa di pane €12"], secondi: ["Carbonada €24", "Costolette €22"], dolci: ["Tegole €6"], vini: ["Torrette €20"], bibite: ["Acqua €2"] } },
+    { name: "Uliassi", city: "Senigallia", region: "Marche", type: "Stellato", cuisine: "Marinara", price: "€€€€ (220-300€)", lat: 43.7155, lon: 13.2168, stars: 5,
+      menu: { antipasti: ["Alici €35"], primi: ["Brodetto €45"], secondi: ["Rombo €50"], dolci: ["Sorbetto €15"], vini: ["Verdicchio €40"], bibite: ["Acqua €5"] } },
+    { name: "Vissani", city: "Baschi", region: "Umbria", type: "Stellato", cuisine: "Umbra", price: "€€€€ (200-280€)", lat: 42.6734, lon: 12.2179, stars: 5,
+      menu: { antipasti: ["Tartufo €40"], primi: ["Strangozzi €35"], secondi: ["Cinghiale €42"], dolci: ["Zuppa inglese €12"], vini: ["Sagrantino €45"], bibite: ["Acqua €4"] } }
+];
 
-let counter = 55;
-for (let i = 0; i < 300; i++) {
-    const region = regionsList[Math.floor(Math.random() * regionsList.length)];
-    const type = typesList[Math.floor(Math.random() * typesList.length)];
-    const cuisine = cuisinesMap[region] || "Italiana";
-    let price = "€€ (25-45€)";
-    if (type === "Stellato") price = "€€€€ (200-350€)";
-    if (type === "Ristorante") price = "€€€ (60-100€)";
-    if (type === "Pasticceria") price = "€ (10-20€)";
-    if (type === "Bar") price = "€ (5-15€)";
-    if (type === "Pizzeria") price = "€ (8-18€)";
-    if (type === "Gelateria") price = "€ (3-8€)";
-    
-    let menuItems = "";
-    let signature = "";
-    if (type === "Pizzeria") {
-        menuItems = "Margherita 6-8€, Marinara 5-7€, Diavola 8-10€";
-        signature = "Pizza Margherita";
-    } else if (type === "Pasticceria") {
-        menuItems = "Cannolo 3-4€, Sfogliatella 2.5-3.5€, Babà 3-4€";
-        signature = "Cannolo, Sfogliatella";
-    } else if (type === "Gelateria") {
-        menuItems = "Cono 3-4€, Coppa 4-6€";
-        signature = "Crema, Pistacchio";
-    } else if (type === "Bar") {
-        menuItems = "Caffè 1.5-2.5€, Cappuccino 2-3€, Cornetto 1.5-2.5€";
-        signature = "Caffè espresso";
-    } else {
-        menuItems = "Primi 12-18€, Secondi 15-25€, Dolci 5-8€";
-        signature = "Piatto tipico regionale";
-    }
-    
-    restaurantsDB.restaurants.push({
-        id: counter++,
-        name: `${type === "Pizzeria" ? "Pizzeria" : type === "Pasticceria" ? "Pasticceria" : type === "Gelateria" ? "Gelateria" : type === "Bar" ? "Caffè" : type === "Stellato" ? "Ristorante" : type} ${cuisine} ${Math.floor(Math.random()*100)+1}`,
-        city: ["Roma","Milano","Napoli","Firenze","Torino","Bologna","Palermo","Genova","Venezia","Verona"][Math.floor(Math.random()*10)],
-        region: region,
-        type: type,
-        cuisine: cuisine,
-        price: price,
-        lat: 41.9 + (Math.random() - 0.5) * 5,
-        lon: 12.5 + (Math.random() - 0.5) * 5,
-        stars: Math.floor(Math.random() * 2) + 3,
-        hours: "Lun-Dom 12:00-15:00, 19:00-23:00",
-        menu: menuItems,
-        signature: signature,
-        tip: "Locale autentico, prenotazione consigliata"
-    });
-}
+extraRegions.forEach(r => restaurantsDB.restaurants.push({...r, hours: "Lun-Dom 12:30-15:00, 19:30-22:30", signature: "Piatto tipico", tip: "Prenotazione consigliata"}));
 
 let currentRestaurants = [...restaurantsDB.restaurants];
 let map = null;
@@ -569,12 +594,8 @@ function renderFilters() {
     const regionHtml = regions.map(r => `<button class="filter-btn" data-filter-region="${r}">${r}</button>`).join('');
     document.getElementById('regionFilters').innerHTML = regionHtml;
     
-    document.querySelectorAll('[data-filter-type]').forEach(btn => {
-        btn.addEventListener('click', () => filterByType(btn.getAttribute('data-filter-type')));
-    });
-    document.querySelectorAll('[data-filter-region]').forEach(btn => {
-        btn.addEventListener('click', () => filterByRegion(btn.getAttribute('data-filter-region')));
-    });
+    document.querySelectorAll('[data-filter-type]').forEach(btn => btn.addEventListener('click', () => filterByType(btn.getAttribute('data-filter-type'))));
+    document.querySelectorAll('[data-filter-region]').forEach(btn => btn.addEventListener('click', () => filterByRegion(btn.getAttribute('data-filter-region'))));
 }
 
 function filterByType(type) {
@@ -599,103 +620,74 @@ function resetFilters() {
     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
 }
 
+function showMenu(restaurant) {
+    const modal = document.getElementById('menuModal');
+    const modalContent = document.getElementById('modalContent');
+    
+    let menuHtml = `<h2 style="color:#c4452c;">${restaurant.name}</h2>
+                    <p><i class="fas fa-map-marker-alt"></i> ${restaurant.city}, ${restaurant.region} | <i class="fas fa-clock"></i> ${restaurant.hours}</p>
+                    <p><span class="restaurant-price">${restaurant.price}</span></p>`;
+    
+    const menu = restaurant.menu;
+    if (menu.antipasti) menuHtml += `<div class="menu-section"><h3><i class="fas fa-utensils"></i> Antipasti</h3>${menu.antipasti.map(i => `<div class="menu-item"><span class="menu-item-name">${i.split('€')[0]}</span><span class="menu-item-price">${i.match(/€[\d.]+/)}</span></div>`).join('')}</div>`;
+    if (menu.primi) menuHtml += `<div class="menu-section"><h3><i class="fas fa-pasta"></i> Primi Piatti</h3>${menu.primi.map(i => `<div class="menu-item"><span class="menu-item-name">${i.split('€')[0]}</span><span class="menu-item-price">${i.match(/€[\d.]+/)}</span></div>`).join('')}</div>`;
+    if (menu.secondi) menuHtml += `<div class="menu-section"><h3><i class="fas fa-drumstick-bite"></i> Secondi Piatti</h3>${menu.secondi.map(i => `<div class="menu-item"><span class="menu-item-name">${i.split('€')[0]}</span><span class="menu-item-price">${i.match(/€[\d.]+/)}</span></div>`).join('')}</div>`;
+    if (menu.dolci) menuHtml += `<div class="menu-section"><h3><i class="fas fa-cake-candles"></i> Dolci</h3>${menu.dolci.map(i => `<div class="menu-item"><span class="menu-item-name">${i.split('€')[0]}</span><span class="menu-item-price">${i.match(/€[\d.]+/)}</span></div>`).join('')}</div>`;
+    if (menu.vini) menuHtml += `<div class="menu-section"><h3><i class="fas fa-wine-bottle"></i> Vini</h3>${menu.vini.map(i => `<div class="menu-item"><span class="menu-item-name">${i.split('€')[0]}</span><span class="menu-item-price">${i.match(/€[\d.]+/)}</span></div>`).join('')}</div>`;
+    if (menu.bibite) menuHtml += `<div class="menu-section"><h3><i class="fas fa-coffee"></i> Bibite</h3>${menu.bibite.map(i => `<div class="menu-item"><span class="menu-item-name">${i.split('€')[0]}</span><span class="menu-item-price">${i.match(/€[\d.]+/)}</span></div>`).join('')}</div>`;
+    if (menu.pizze) menuHtml += `<div class="menu-section"><h3><i class="fas fa-pizza"></i> Pizze</h3>${menu.pizze.map(i => `<div class="menu-item"><span class="menu-item-name">${i.split('€')[0]}</span><span class="menu-item-price">${i.match(/€[\d.]+/)}</span></div>`).join('')}</div>`;
+    if (menu.gelati) menuHtml += `<div class="menu-section"><h3><i class="fas fa-ice-cream"></i> Gelati</h3>${menu.gelati.map(i => `<div class="menu-item"><span class="menu-item-name">${i.split('€')[0]}</span><span class="menu-item-price">${i.match(/€[\d.]+/)}</span></div>`).join('')}</div>`;
+    
+    menuHtml += `<div class="chef-tip" style="margin-top:1rem;"><i class="fas fa-lightbulb"></i> <strong>Consiglio:</strong> ${restaurant.tip}</div>`;
+    modalContent.innerHTML = menuHtml;
+    modal.style.display = "block";
+}
+
+function closeModal() { document.getElementById('menuModal').style.display = "none"; }
+
 function renderRestaurantsList() {
     const container = document.getElementById('restaurantsContainer');
-    if (currentRestaurants.length === 0) {
-        container.innerHTML = '<p style="text-align:center; padding:2rem;">🍽️ Nessun locale trovato con questi filtri.</p>';
-        return;
-    }
+    if (currentRestaurants.length === 0) { container.innerHTML = '<p style="text-align:center; padding:2rem;">🍽️ Nessun locale trovato.</p>'; return; }
     
     const sorted = [...currentRestaurants].sort((a,b) => b.stars - a.stars);
     container.innerHTML = sorted.map(r => `
         <div class="restaurant-card" onclick="centerMapOnRestaurant(${r.lat}, ${r.lon}, '${r.name.replace(/'/g, "\\'")}')">
-            <div class="restaurant-name">
-                ${r.name}
-                <span class="stars">${'⭐'.repeat(r.stars)}</span>
-            </div>
+            <div class="restaurant-name">${r.name}<span class="stars">${'⭐'.repeat(r.stars)}</span></div>
             <div class="restaurant-type"><i class="fas fa-utensils"></i> ${r.type} • ${r.cuisine}</div>
             <div class="restaurant-location"><i class="fas fa-map-marker-alt"></i> ${r.city}, ${r.region}</div>
             <div><span class="restaurant-price"><i class="fas fa-euro-sign"></i> ${r.price}</span> <span class="restaurant-price"><i class="fas fa-clock"></i> ${r.hours}</span></div>
-            <div class="menu-preview"><i class="fas fa-book-open"></i> <strong>Menù:</strong> ${r.menu}</div>
-            <div class="menu-preview"><i class="fas fa-star"></i> <strong>Piatto iconico:</strong> ${r.signature}</div>
-            <div class="chef-tip"><i class="fas fa-lightbulb"></i> <strong>Consiglio:</strong> ${r.tip}</div>
+            <div class="chef-tip"><i class="fas fa-star"></i> <strong>Piatto iconico:</strong> ${r.signature}</div>
+            <button class="view-menu-btn" onclick="event.stopPropagation(); showMenu(${JSON.stringify(r).replace(/</g, '\\u003c')})"><i class="fas fa-book-open"></i> Visualizza Menu Completo</button>
         </div>
     `).join('');
 }
 
 function initMap() {
     map = L.map('map').setView([41.8719, 12.5674], 6);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; OpenStreetMap'
-    }).addTo(map);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; OpenStreetMap' }).addTo(map);
     updateMapMarkers();
 }
 
 function updateMapMarkers() {
     markers.forEach(marker => map.removeLayer(marker));
     markers = [];
-    
     currentRestaurants.forEach(rest => {
         const marker = L.marker([rest.lat, rest.lon]).addTo(map);
-        marker.bindPopup(`
-            <b>${rest.name}</b><br>
-            ${rest.city}, ${rest.region}<br>
-            ${rest.type} • ${rest.cuisine}<br>
-            ⭐ ${rest.stars} stelle<br>
-            💶 ${rest.price}<br>
-            🍽️ ${rest.signature}<br>
-            <i>${rest.tip}</i>
-        `);
+        marker.bindPopup(`<b>${rest.name}</b><br>${rest.city}, ${rest.region}<br>${rest.type}<br>⭐ ${rest.stars} stelle<br><i>${rest.signature}</i><br><button onclick="window.showMenuTemp(${rest.id})" style="background:#c4452c;color:white;border:none;padding:5px;border-radius:10px;margin-top:5px;">📖 Vedi Menu</button>`);
         markers.push(marker);
     });
-    
     if (currentRestaurants.length > 0 && map) {
         const bounds = L.latLngBounds(markers.map(m => m.getLatLng()));
         if (bounds.isValid()) map.fitBounds(bounds, { padding: [30, 30] });
     }
 }
 
-window.centerMapOnRestaurant = function(lat, lon, name) {
-    if (map) {
-        map.setView([lat, lon], 13);
-        L.popup().setLatLng([lat, lon]).setContent(`<b>${name}</b>`).openOn(map);
-    }
-};
-
-function renderRegionsGrid() {
-    const grid = document.getElementById('regionsGrid');
-    grid.innerHTML = regions.map(region => `
-        <div class="region-tag" onclick="filterByRegion('${region}')"><i class="fas fa-wine-bottle"></i> ${region}</div>
-    `).join('');
-}
-
-function updateUI() {
-    renderRestaurantsList();
-    updateMapMarkers();
-}
-
-function subscribeNewsletter() {
-    const email = document.getElementById('newsletterEmail').value;
-    const msg = document.getElementById('newsletterMsg');
-    if (!email || !email.includes('@')) {
-        msg.style.color = '#c4452c';
-        msg.innerText = '❌ Inserisci una email valida.';
-        return;
-    }
-    msg.style.color = '#a8e6cf';
-    msg.innerText = '✅ Grazie! Riceverai la guida completa con menù e prezzi.';
-    document.getElementById('newsletterEmail').value = '';
-    setTimeout(() => msg.innerText = '', 3000);
-}
-
-function init() {
-    renderFilters();
-    renderRestaurantsList();
-    renderRegionsGrid();
-    initMap();
-    document.getElementById('resetFilters').addEventListener('click', resetFilters);
-}
-
+window.showMenuTemp = function(id) { const r = restaurantsDB.restaurants.find(x => x.id === id); if(r) showMenu(r); };
+window.centerMapOnRestaurant = function(lat, lon, name) { if(map) { map.setView([lat, lon], 14); L.popup().setLatLng([lat, lon]).setContent(`<b>${name}</b>`).openOn(map); } };
+function renderRegionsGrid() { document.getElementById('regionsGrid').innerHTML = regions.map(r => `<div class="region-tag" onclick="filterByRegion('${r}')"><i class="fas fa-wine-bottle"></i> ${r}</div>`).join(''); }
+function updateUI() { renderRestaurantsList(); updateMapMarkers(); }
+function subscribeNewsletter() { const email = document.getElementById('newsletterEmail').value; const msg = document.getElementById('newsletterMsg'); if (!email || !email.includes('@')) { msg.style.color = '#c4452c'; msg.innerText = '❌ Inserisci una email valida.'; return; } msg.style.color = '#a8e6cf'; msg.innerText = '✅ Grazie! Riceverai menu e guide esclusive.'; document.getElementById('newsletterEmail').value = ''; setTimeout(() => msg.innerText = '', 3000); }
+function init() { renderFilters(); renderRestaurantsList(); renderRegionsGrid(); initMap(); document.getElementById('resetFilters').addEventListener('click', resetFilters); window.onclick = function(e) { if (e.target == document.getElementById('menuModal')) closeModal(); }; }
 init();
 </script>
 </body>
