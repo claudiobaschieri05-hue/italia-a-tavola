@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Italia a Tavola | Guida ai ristoranti e ai tesori della cucina italiana</title>
+    <meta name="description" content="Scopri i ristoranti più belli d'Italia, le trattorie storiche, le osterie e le esperienze culinarie uniche. Guida completa alla cucina italiana e ai luoghi del gusto.">
+    <meta name="keywords" content="ristoranti italiani, cucina italiana, trattorie, osterie, ristoranti stellati, enoteche, food experience italia">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Italia a Tavola - Guida ai ristoranti e alla cucina italiana">
+    <meta property="og:description" content="I luoghi più belli dove mangiare in Italia, dalle trattorie storiche ai ristoranti stellati.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630?text=Italia+a+Tavola">
+    
+    <!-- Leaflet CSS per mappe -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Playfair Display', Georgia, 'Times New Roman', serif;
+            background: #fef9f0;
+            color: #2c2418;
+            line-height: 1.6;
+        }
+
+        /* Header con immagine hero */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600');
+            background-size: cover;
+            background-position: center;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: #c4452c;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        /* Navbar sticky */
+        .navbar {
+            background: #2c2418;
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: #c4452c;
+            font-size: 1.8rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #c4452c;
+        }
+
+        /* Container principale */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Sezione intro */
+        .intro {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: white;
+            border-radius: 30px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .intro h2 {
+            font-size: 2.2rem;
+            color: #c4452c;
+            margin-bottom: 1rem;
+        }
+
+        .intro p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: #5a4a3a;
+        }
+
+        /* Filtri */
+        .filters-section {
+            background: white;
+            border-radius: 25px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .filters-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #c4452c;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .filter-btn {
+            background: #f0ebe4;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 500;
+            transition: all 0.2s;
+            color: #2c2418;
+        }
+
+        .filter-btn.active {
+            background: #c4452c;
+            color: white;
+        }
+
+        .filter-btn:hover {
+            background: #d45a3e;
+            color: white;
+        }
+
+        .reset-btn {
+            background: #2c2418;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        /* Layout griglia ristoranti e mappa */
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Card ristoranti */
+        .restaurants-list {
+            background: white;
+            border-radius: 25px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            max-height: 650px;
+            overflow-y: auto;
+        }
+
+        .restaurants-list h2 {
+            color: #c4452c;
+            margin-bottom: 1rem;
+            border-left: 4px solid #c4452c;
+            padding-left: 1rem;
+        }
+
+        .restaurant-card {
+            background: #fef9f0;
+            border-radius: 20px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid #e8dfd3;
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-color: #c4452c;
+        }
+
+        .restaurant-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c2418;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .stars {
+            color: #f4b942;
+            font-size: 0.9rem;
+        }
+
+        .restaurant-cuisine {
+            display: inline-block;
+            background: #e8dfd3;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        .restaurant-location {
+            font-size: 0.85rem;
+            color: #7a6856;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin: 0.5rem 0;
+        }
+
+        .restaurant-desc {
+            font-size: 0.85rem;
+            color: #5a4a3a;
+            margin-top: 0.5rem;
+        }
+
+        .price-badge {
+            display: inline-block;
+            background: #2c2418;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Mappa */
+        .map-wrapper {
+            background: white;
+            border-radius: 25px;
+            padding: 1rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        #map {
+            height: 550px;
+            border-radius: 20px;
+            z-index: 1;
+        }
+
+        /* Sezione regioni iconiche */
+        .regions-section {
+            background: linear-gradient(135deg, #f5ede3 0%, #fff5ea 100%);
+            border-radius: 30px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .regions-section h2 {
+            text-align: center;
+            color: #c4452c;
+            margin-bottom: 1.5rem;
+        }
+
+        .regions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
+        .region-tag {
+            background: white;
+            padding: 0.8rem;
+            text-align: center;
+            border-radius: 60px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .region-tag:hover {
+            background: #c4452c;
+            color: white;
+            transform: scale(1.02);
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: #2c2418;
+            color: white;
+            border-radius: 30px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .newsletter h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-form input {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            width: 280px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            background: #c4452c;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e1812;
+            color: #b8a99a;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f0ebe4;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c4452c;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>🍝 Italia a Tavola</h1>
+        <p>Dalle trattorie nascoste ai ristoranti stellati: la guida definitiva ai luoghi più belli dove mangiare in Italia</p>
+        <div class="hero-badge">🇮🇹 150+ locali selezionati | 20 regioni | Il gusto italiano</div>
+    </div>
+</section>
+
+<nav class="navbar">
+    <div class="logo">
+        <span>🇮🇹</span> Italia a Tavola
+    </div>
+    <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#ristoranti">Ristoranti</a>
+        <a href="#mappa">Mappa</a>
+        <a href="#regioni">Regioni</a>
+        <a href="#newsletter">Newsletter</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="intro">
+        <h2>🗺️ La mappa del gusto italiano</h2>
+        <p>Un viaggio attraverso i sapori autentici, le eccellenze culinarie e i luoghi più suggestivi dove la cucina italiana è protagonista. Dalle osterie con secoli di storia ai ristoranti contemporanei con vista mare, ogni regione racconta una storia unica.</p>
+    </div>
+
+    <div class="filters-section">
+        <div class="filters-title">🍽️ Filtra per esperienza culinaria</div>
+        <div class="filter-group" id="typeFilters"></div>
+        <div class="filters-title">📍 Filtra per regione</div>
+        <div class="filter-group" id="regionFilters"></div>
+        <button class="reset-btn" id="resetFilters">🔄 Mostra tutti i ristoranti</button>
+    </div>
+
+    <div class="dashboard" id="ristoranti">
+        <div class="restaurants-list">
+            <h2>🏆 Locali selezionati</h2>
+            <div id="restaurantsContainer"></div>
+        </div>
+        <div class="map-wrapper" id="mappa">
+            <h2 style="margin-bottom: 0.5rem; color:#c4452c;">🗺️ Esplora sulla mappa</h2>
+            <div id="map"></div>
+        </div>
+    </div>
+
+    <div class="regions-section" id="regioni">
+        <h2>🍷 Le regioni d'Italia da scoprire</h2>
+        <div class="regions-grid" id="regionsGrid"></div>
+    </div>
+
+    <div class="newsletter" id="newsletter">
+        <h3>📧 Ricevi le migliori guide gastronomiche</h3>
+        <p>Iscriviti per scoprire ristoranti esclusivi, eventi del gusto e itinerari enogastronomici.</p>
+        <div class="newsletter-form">
+            <input type="email" id="newsletterEmail" placeholder="La tua email">
+            <button onclick="subscribeNewsletter()">Iscriviti gratuitamente</button>
+        </div>
+        <p id="newsletterMsg" style="margin-top: 0.5rem; font-size: 0.9rem;"></p>
+    </div>
+</div>
+
+<footer class="footer">
+    <p>🇮🇹 Italia a Tavola - Guida ai ristoranti e alla cultura gastronomica italiana</p>
+    <p style="font-size: 0.8rem; margin-top: 0.5rem;">Selezione dei migliori locali d'Italia | Tradizione, innovazione, passione</p>
+</footer>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+    // ======================= DATABASE RISTORANTI =======================
+    const restaurantsDB = {
+        restaurants: [
+            // NORD ITALIA
+            { id: 1, name: "Osteria Francescana", city: "Modena", region: "Emilia-Romagna", type: "Stellato", cuisine: "Innovativa", price: "€€€€", lat: 44.6471, lon: 10.9252, stars: 5, description: "Tre stelle Michelin. L'arte culinaria di Massimo Bottura rivisita la tradizione emiliana." },
+            { id: 2, name: "Le Calandre", city: "Rubano", region: "Veneto", type: "Stellato", cuisine: "Contemporanea", price: "€€€€", lat: 45.4282, lon: 11.7968, stars: 5, description: "Tre stelle Michelin, famiglia Alajmo. Eleganza e creatività." },
+            { id: 3, name: "Trattoria da Burde", city: "Firenze", region: "Toscana", type: "Trattoria", cuisine: "Tradizionale", price: "€€", lat: 43.7863, lon: 11.2597, stars: 4, description: "Dal 1901, la vera bistecca alla fiorentina e cucina toscana autentica." },
+            { id: 4, name: "Antica Osteria del Teatro", city: "Piacenza", region: "Emilia-Romagna", type: "Osteria", cuisine: "Emiliana", price: "€€", lat: 45.0525, lon: 9.6939, stars: 4, description: "Piatti tradizionali emiliani in un'atmosfera d'altri tempi." },
+            { id: 5, name: "Ristorante Piazza Duomo", city: "Alba", region: "Piemonte", type: "Stellato", cuisine: "Creativa", price: "€€€€", lat: 44.6998, lon: 8.0349, stars: 5, description: "Tre stelle Michelin, Enrico Crippa. Tartufo bianco e arte." },
+            { id: 6, name: "La Pergola", city: "Roma", region: "Lazio", type: "Stellato", cuisine: "Internazionale", price: "€€€€", lat: 41.9028, lon: 12.4964, stars: 5, description: "Unica tre stelle Michelin di Roma, vista mozzafiato." },
+            { id: 7, name: "Osteria dell'Antica Piazza", city: "Trastevere", region: "Lazio", type: "Osteria", cuisine: "Romana", price: "€€", lat: 41.8905, lon: 12.4702, stars: 4, description: "Autentica cucina romana nel cuore di Trastevere." },
+            { id: 8, name: "Gambero Rosso", city: "San Vincenzo", region: "Toscana", type: "Ristorante", cuisine: "Marinara", price: "€€€", lat: 43.0921, lon: 10.5395, stars: 4, description: "Pesce fresco e vista mare sulla costa toscana." },
+            { id: 9, name: "Trattoria Sostanza", city: "Firenze", region: "Toscana", type: "Trattoria", cuisine: "Tradizionale", price: "€€", lat: 43.7777, lon: 11.2517, stars: 4, description: "Storica trattoria, famosa per il burro e la bistecca." },
+            { id: 10, name: "Enoteca Pinchiorri", city: "Firenze", region: "Toscana", type: "Stellato", cuisine: "Alta Cucina", price: "€€€€", lat: 43.7715, lon: 11.2568, stars: 5, description: "Tre stelle Michelin, cantina straordinaria." },
+            { id: 11, name: "Al Covo", city: "Venezia", region: "Veneto", type: "Ristorante", cuisine: "Marinara", price: "€€€", lat: 45.4333, lon: 12.3333, stars: 4, description: "Pesce di laguna e cucina veneziana autentica." },
+            { id: 12, name: "Ristorante Da Vittorio", city: "Brusaporto", region: "Lombardia", type: "Stellato", cuisine: "Italiana Moderna", price: "€€€€", lat: 45.6735, lon: 9.7631, stars: 5, description: "Tre stelle Michelin, famiglia Cerea. Eccellenza italiana." },
+            { id: 13, name: "Trattoria Trippa", city: "Milano", region: "Lombardia", type: "Trattoria", cuisine: "Tradizionale", price: "€€", lat: 45.4642, lon: 9.1900, stars: 4, description: "Freschezza e tradizione, piatti di quinto quarto." },
+            { id: 14, name: "Reale", city: "Castel di Sangro", region: "Abruzzo", type: "Stellato", cuisine: "Contemporanea", price: "€€€€", lat: 41.7838, lon: 14.1037, stars: 5, description: "Tre stelle Michelin, Niko Romito. Minimalismo e territorio." },
+            { id: 15, name: "Ristorante Don Alfonso 1890", city: "Sant'Agata sui Due Golfi", region: "Campania", type: "Stellato", cuisine: "Campana", price: "€€€€", lat: 40.6101, lon: 14.3717, stars: 5, description: "Due stelle Michelin, cucina sorrentina d'eccellenza." },
+            { id: 16, name: "Taverna Estia", city: "Napoli", region: "Campania", type: "Trattoria", cuisine: "Napoletana", price: "€€", lat: 40.8518, lon: 14.2681, stars: 4, description: "Autentica cucina napoletana nel centro storico." },
+            { id: 17, name: "Ristorante Grotta Palazzese", city: "Polignano a Mare", region: "Puglia", type: "Ristorante", cuisine: "Marinara", price: "€€€€", lat: 40.9963, lon: 17.2180, stars: 5, description: "Location unica al mondo, incastonato nella roccia sul mare." },
+            { id: 18, name: "Osteria dei Vespri", city: "Palermo", region: "Sicilia", type: "Osteria", cuisine: "Siciliana", price: "€€€", lat: 38.1157, lon: 13.3618, stars: 4, description: "Eleganza e tradizione siciliana nel centro di Palermo." },
+            { id: 19, name: "La Madia", city: "Licata", region: "Sicilia", type: "Stellato", cuisine: "Siciliana Creativa", price: "€€€€", lat: 37.1042, lon: 13.9372, stars: 5, description: "Due stelle Michelin, Pino Cuttaia. Mare e tradizione." },
+            { id: 20, name: "Su Gologone", city: "Oliena", region: "Sardegna", type: "Ristorante", cuisine: "Sarda", price: "€€€", lat: 40.2765, lon: 9.4042, stars: 4, description: "Cucina sarda autentica, location immersa nella natura." },
+            { id: 21, name: "Caffè Sicilia", city: "Noto", region: "Sicilia", type: "Pasticceria", cuisine: "Dolci", price: "€€", lat: 36.8923, lon: 15.0701, stars: 5, description: "Dolci e pasticceria siciliana tra i migliori al mondo." },
+            { id: 22, name: "Antico Arco", city: "Roma", region: "Lazio", type: "Ristorante", cuisine: "Contemporanea", price: "€€€", lat: 41.8899, lon: 12.4639, stars: 4, description: "Cucina romana rivisitata, terrazza panoramica." },
+            { id: 23, name: "Hosteria Giusti", city: "Modena", region: "Emilia-Romagna", type: "Osteria", cuisine: "Emiliana", price: "€€", lat: 44.6469, lon: 10.9253, stars: 4, description: "Tigelle, gnocco fritto e salumi storici." },
+            { id: 24, name: "Ristorante Casa Maria Luigia", city: "Modena", region: "Emilia-Romagna", type: "Stellato", cuisine: "Innovativa", price: "€€€€", lat: 44.6599, lon: 10.8818, stars: 5, description: "L'esperienza di Massimo Bottura tra arte e cucina." }
+        ]
+    };
+
+    let currentRestaurants = [...restaurantsDB.restaurants];
+    let map = null;
+    let markers = [];
+
+    // Tipologie uniche
+    const types = [...new Set(restaurantsDB.restaurants.map(r => r.type))];
+    const regions = [...new Set(restaurantsDB.restaurants.map(r => r.region))].sort();
+
+    // Render filtri
+    function renderFilters() {
+        const typeHtml = types.map(t => `
+            <button class="filter-btn" data-filter-type="${t}">${t}</button>
+        `).join('');
+        document.getElementById('typeFilters').innerHTML = typeHtml;
+
+        const regionHtml = regions.map(r => `
+            <button class="filter-btn" data-filter-region="${r}">${r}</button>
+        `).join('');
+        document.getElementById('regionFilters').innerHTML = regionHtml;
+
+        // Event listener per filtri
+        document.querySelectorAll('[data-filter-type]').forEach(btn => {
+            btn.addEventListener('click', () => filterByType(btn.getAttribute('data-filter-type')));
+        });
+        document.querySelectorAll('[data-filter-region]').forEach(btn => {
+            btn.addEventListener('click', () => filterByRegion(btn.getAttribute('data-filter-region')));
+        });
+    }
+
+    function filterByType(type) {
+        currentRestaurants = restaurantsDB.restaurants.filter(r => r.type === type);
+        updateUI();
+        highlightActiveFilter('[data-filter-type]', type);
+    }
+
+    function filterByRegion(region) {
+        currentRestaurants = restaurantsDB.restaurants.filter(r => r.region === region);
+        updateUI();
+        highlightActiveFilter('[data-filter-region]', region);
+    }
+
+    function highlightActiveFilter(selector, value) {
+        document.querySelectorAll(selector).forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll(selector).forEach(btn => {
+            if (btn.getAttribute(selector === '[data-filter-type]' ? 'data-filter-type' : 'data-filter-region') === value) {
+                btn.classList.add('active');
+            }
+        });
+    }
+
+    function resetFilters() {
+        currentRestaurants = [...restaurantsDB.restaurants];
+        updateUI();
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    }
+
+    // Render lista ristoranti
+    function renderRestaurantsList() {
+        const container = document.getElementById('restaurantsContainer');
+        if (currentRestaurants.length === 0) {
+            container.innerHTML = '<p style="text-align:center; padding:2rem;">🍽️ Nessun ristorante trovato con questi filtri.</p>';
+            return;
+        }
+
+        const sorted = [...currentRestaurants].sort((a,b) => b.stars - a.stars);
+        container.innerHTML = sorted.map(r => `
+            <div class="restaurant-card" onclick="centerMapOnRestaurant(${r.lat}, ${r.lon}, '${r.name.replace(/'/g, "\\'")}')">
+                <div class="restaurant-name">
+                    ${r.name}
+                    <span class="stars">${'⭐'.repeat(r.stars)}</span>
+                </div>
+                <div class="restaurant-cuisine">${r.cuisine}</div>
+                <div class="restaurant-location">📍 ${r.city}, ${r.region}</div>
+                <div class="restaurant-desc">${r.description}</div>
+                <div class="price-badge">${r.price}</div>
+            </div>
+        `).join('');
+    }
+
+    // Inizializza mappa
+    function initMap() {
+        map = L.map('map').setView([41.8719, 12.5674], 6);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        updateMapMarkers();
+    }
+
+    function updateMapMarkers() {
+        // Rimuovi marker esistenti
+        markers.forEach(marker => map.removeLayer(marker));
+        markers = [];
+
+        currentRestaurants.forEach(rest => {
+            const marker = L.marker([rest.lat, rest.lon]).addTo(map);
+            marker.bindPopup(`
+                <b>${rest.name}</b><br>
+                ${rest.city}, ${rest.region}<br>
+                ${rest.cuisine}<br>
+                ⭐ ${rest.stars} stelle<br>
+                <i>${rest.description.substring(0, 80)}...</i>
+            `);
+            markers.push(marker);
+        });
+
+        if (currentRestaurants.length > 0 && map) {
+            const bounds = L.latLngBounds(markers.map(m => m.getLatLng()));
+            if (bounds.isValid()) map.fitBounds(bounds, { padding: [30, 30] });
+        }
+    }
+
+    window.centerMapOnRestaurant = function(lat, lon, name) {
+        if (map) {
+            map.setView([lat, lon], 14);
+            L.popup()
+                .setLatLng([lat, lon])
+                .setContent(`<b>${name}</b>`)
+                .openOn(map);
+        }
+    };
+
+    // Regioni grid
+    function renderRegionsGrid() {
+        const grid = document.getElementById('regionsGrid');
+        grid.innerHTML = regions.map(region => `
+            <div class="region-tag" onclick="filterByRegion('${region}')">${region}</div>
+        `).join('');
+    }
+
+    function updateUI() {
+        renderRestaurantsList();
+        updateMapMarkers();
+        document.getElementById('restaurantsContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Newsletter
+    window.subscribeNewsletter = function() {
+        const email = document.getElementById('newsletterEmail').value;
+        const msg = document.getElementById('newsletterMsg');
+        if (!email || !email.includes('@')) {
+            msg.style.color = '#c4452c';
+            msg.innerText = '❌ Inserisci un indirizzo email valido.';
+            return;
+        }
+        msg.style.color = '#a8e6cf';
+        msg.innerText = '✅ Grazie! Riceverai le migliori esperienze culinarie italiane.';
+        document.getElementById('newsletterEmail').value = '';
+        setTimeout(() => msg.innerText = '', 3000);
+    };
+
+    // Inizializzazione
+    function init() {
+        renderFilters();
+        renderRestaurantsList();
+        renderRegionsGrid();
+        initMap();
+        document.getElementById('resetFilters').addEventListener('click', resetFilters);
+    }
+
+    init();
+</script>
+</body>
+</html>
